@@ -3,16 +3,95 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './pantallas/login/login.component';
+import { AdministratorComponent } from './pantallas/administrator/administrator.component';
+import { LoadingComponent } from './loading/loading.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingInterceptor } from './helpers/loading.interceptor';
+import { RouterModule } from '@angular/router';
+import { AllUsersComponent } from './pantallas/administrator/users/all-users/all-users.component';
+import { CategoryUsersComponent } from './pantallas/administrator/users/category-users/category-users.component';
+import { RegisterUserComponent } from './pantallas/administrator/users/register-user/register-user.component';
+import { EditUserComponent } from './pantallas/administrator/users/edit-user/edit-user.component';
+import { SportsClubsComponent } from './pantallas/administrator/clubs/sports-clubs/sports-clubs.component';
+import { EditClubsComponent } from './pantallas/administrator/clubs/edit-clubs/edit-clubs.component';
+import { AllEntitiesComponent } from './pantallas/administrator/entities/all-entities/all-entities.component';
+import { AllSportComponent } from './pantallas/administrator/sports/all-sport/all-sport.component';
+import { RegisterEntitiesComponent } from './pantallas/administrator/entities/register-entities/register-entities.component';
+import { EditEntitiesComponent } from './pantallas/administrator/entities/edit-entities/edit-entities.component';
+import { RegisterSportsComponent } from './pantallas/administrator/sports/register-sports/register-sports.component';
+import { BuscadorUserPipe } from './pipe/buscador-user.pipe';
+import { BuscadorClubPipe } from './pipe/buscador-club.pipe';
+import { RegisterClubComponent } from './pantallas/administrator/clubs/register-club/register-club.component';
+import { BuscadorSportPipe } from './pipe/buscador-sport.pipe';
+import { EditSportComponent } from './pantallas/administrator/sports/edit-sport/edit-sport.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { BuscadorEntitiePipe } from './pipe/buscador-entitie.pipe';
+import { AllPaysComponent } from './pantallas/administrator/pay/all-pays/all-pays.component';
+import { AllChatComponent } from './pantallas/administrator/chat/all-chat/all-chat.component';
+import { ReplyChatComponent } from './pantallas/administrator/chat/reply-chat/reply-chat.component';
+import { BuscadorNotificationChatPipe } from './pipe/buscador-notification-chat.pipe';
+import { BuscadorChatPipe } from './pipe/buscador-chat.pipe';
+import { TypePayComponent } from './pantallas/administrator/pay/type-pay/type-pay.component';
+import { TypeEventsComponent } from './pantallas/administrator/events/type-events/type-events.component';
+import { EditEventsComponent } from './pantallas/administrator/events/edit-events/edit-events.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    AdministratorComponent,
+    LoadingComponent,
+    AllUsersComponent,
+    CategoryUsersComponent,
+    RegisterUserComponent,
+    EditUserComponent,
+    SportsClubsComponent,
+    EditClubsComponent,
+    AllEntitiesComponent,
+    AllSportComponent,
+    RegisterEntitiesComponent,
+    EditEntitiesComponent,
+    RegisterSportsComponent,
+    BuscadorUserPipe,
+    BuscadorClubPipe,
+    RegisterClubComponent,
+    BuscadorSportPipe,
+    EditSportComponent,
+    BuscadorEntitiePipe,
+    AllPaysComponent,
+    AllChatComponent,
+    ReplyChatComponent,
+    BuscadorNotificationChatPipe,
+    BuscadorChatPipe,
+    TypePayComponent,
+    TypeEventsComponent,
+    EditEventsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    RouterModule,
+    BrowserAnimationsModule,
+    AutocompleteLibModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true}
+  ],
+  exports:[
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

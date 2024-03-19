@@ -1,0 +1,169 @@
+.card{
+  width: 99.5%;
+  margin: 0 auto;
+  box-shadow: 0px 5px 10px black;
+  border: #333;
+}
+.card-header{
+  height: 80px;
+  background: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.boton-regresar{
+  border-radius: 10px;
+  background: red;
+  height: 45px;
+  position: absolute;
+  left: 70px;
+}
+.boton-regresar a{
+  color: black;
+  text-decoration: none;
+  font-size: 17px;
+font-weight: 600;
+}
+
+.thead{
+  background: #333;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.input-group{
+  height: 42px;
+}
+.input-group-text{
+  background:red;
+  border: #333;
+  color: white;
+}
+
+.caja-imagen{
+  border-radius: 10px;
+  border: #333 3px solid;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content:right;
+  align-items:start;
+}
+.edit-image{
+  position:fixed;
+
+}
+.image-logo{
+  margin: 0 auto;
+  margin-top: 3px;
+}
+.nombres{
+  margin-top: 20px;
+}
+.nombre-rol{
+  font-size: 22px;
+  margin-left: 110px;
+  font-weight: 600;
+}
+.row-form{
+  position: absolute;
+  right: 10px;
+}
+.card-body{
+  display: flex;
+  height: calc(100vh - 80px);
+}
+.messages{
+  width: 70%;
+  margin: 15px;
+  border-radius: 15px;
+  background-color: #b8b6b6;
+  padding: 20px;
+}
+.info{
+  width: 30%;
+  margin: 15px;
+  border-radius: 15px;
+  background-color: #b8b6b6;
+}
+.messages-header{
+  display: flex;
+  margin-bottom: 8px;
+}
+.messages-header > img{
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  height: 50px;
+}
+.chat-area{
+  height: calc(100vh - 320px);
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.chat-area :first-child{
+margin-top: auto;
+}
+
+.label{
+  background: white;
+  border-radius: 5px;
+  height: 50px;
+  width: 100%;
+  margin: 0 auto;
+}
+.chat-bubble-container.sender{
+  justify-content: flex-end,
+
+}
+.chat-bubble-container.sender>.chat-bubble{
+   background: rgb(246, 115, 115);
+  margin-right: 8px;
+}
+.chat-bubble-container{
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+.chat-bubble{
+  background: rgb(234, 234, 234);
+  padding-top: 8px;
+  padding-bottom: 18px;
+  padding-left: 8px;
+  margin-left: 8px;
+  padding-right: 100px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  width: fit-content;
+  position: relative;
+  max-width: 80%;
+}
+.chat-bubble >.chat-date{
+  position: absolute;
+  bottom: 2px;
+  right: 8px;
+  font-size: 0.7rem;
+  color: rgba(0,0,0,0.6);
+}
+
+.chat-bubble> .chat-button{
+  border:none;
+  position: absolute;
+  bottom: 20px;
+  right: 0px;
+  background: transparent,
+}
+.btn-copiar{
+  width: 100%;
+  background: #dddcdc;
+  margin-bottom: 10px;
+}
+.btn-eliminar{
+  width: 100%;
+  background: #dddcdc;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}

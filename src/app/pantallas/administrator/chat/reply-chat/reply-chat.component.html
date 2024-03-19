@@ -1,0 +1,84 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  </head>
+    <div class="card" *ngFor="let user of users">
+      <div class="card-header">
+          <button  class="boton-regresar"><a (click)="goBack()"><i class="fas fa-reply fa-2x"></i></a>
+          </button>
+          <div class="nombre-rol">Servicio al cliente</div>
+          <form class="row-form">
+              <div class="input-group" >
+
+               <input type='search'  class='form-control' placeholder='Buscar...' #txtSearch (keyup)="onSearchUser(txtSearch.value)" >
+                <div class="input-group-text"><i class="fa fa-search"></i></div>
+            </div>
+          </form>
+      </div>
+<div class="card-body" >
+  <div class="info text-center">
+    <h3>Ayuda general</h3>
+
+  </div>
+  <div class="messages">
+    <div class="messages-header">
+      <img src="assets/img/person.png">
+      <h3>{{user.name}}</h3>
+      </div>
+      <div class="chat-area">
+        <ng-container *ngFor="let chat of chats | buscadorChat:search">
+          <div
+          class="chat-bubble-container"
+          [ngClass]="{'sender': chat.isMe != 'false'}"
+          >
+            <div class="chat-bubble">
+              {{chat.message}}
+              <button class="chat-button" (click)="openPopup(chat.id_chat, chat.id_user)"><img src="assets/img/menu.png" width="20px">
+              </button>
+              <div
+              class="modal"
+              tabindex="-1"
+              role="dialog"
+              [ngStyle]="{'display':displayStyle}">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <br>
+                  <button class="btn btn-copiar" >Copiar</button>
+                  <br>
+                  <button class="btn btn-eliminar" (click)="delete()">Anular envio</button>
+                  <br>
+                  <div class="modal-footer modal-footer-yellow">
+                    <button class="btn btn-primary" (click)="closePopup()">Cancelar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+              <span class="chat-date">
+                {{chat.day}}/{{chat.month}}/{{chat.year}}-{{chat.hour}}:{{chat.minute}} {{chat.meridiem}}
+              </span>
+            </div>
+          </div>
+        </ng-container>
+        <div #endOfChat></div>
+    </div>
+    <br>
+    <form [formGroup]="messages">
+      <div class="label row">
+        <input class="form-control col" formControlName="message" placeholder="Mensaje..." required>
+        <button class="col col-1 btn" (click)="sendMessage()">
+          <img src="assets/img/enviar.png" width="30px">
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+        </div>
+</html>

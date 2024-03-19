@@ -1,0 +1,60 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  </head>
+    <div class="card" >
+      <div class="card-header"  >
+          <div class="nombre">Clubes</div>
+          <form class="row-form"  >
+            <div class="form-froup">
+              <div class="input-group" >
+                <input type="text" list="lista" class="form-control" placeholder="Buscar..." #txtSearch (keyup)="onSearchUser(txtSearch.value)">
+                <div class="input-group-text"><i class="fa fa-search"></i></div>
+              </div>
+            </div>
+          </form>
+          <button  class="boton-adicionar"><a href='administrator/register-club'>Crear club <i class="fas fa-plus-circle"></i></a>
+          </button>
+      </div>
+      <div class="card-body text-center">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead class="thead">
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th class='list-phone'>Contacto</th>
+                <th class='list-image'>Imagen</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let club of clubs | buscadorClub:search">
+                <td><div class="nombres">{{club.id_club}}</div></td>
+                <td><div class="nombres">{{club.name}}</div></td>
+                <td class='list-phone'><div class="nombres">{{club.phone}}</div></td>
+                <td class='list-image'>
+                  <button class="btn" type="button">
+                    <div class="caja-imagen">
+                    <img src="assets/img/imagen-logo.png" width="50px" class="image-logo">
+                  </div>
+                  </button>
+                </td>
+                <td class="text-center">
+                  <div class="nombres">
+                    <button class="btn" type="button" [routerLink]="['/administrator/edit-club',club.id_club]"><img src="assets/img/editar-solo.png" width="25px"></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+         </div>
+        </div>
+        </div>
+</html>

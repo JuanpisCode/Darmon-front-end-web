@@ -1,0 +1,63 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  </head>
+    <div class="card" *ngFor="let club of clubs">
+      <div class="card-header" *ngFor="let club of clubs">
+          <button  class="boton-regresar"(click)="openPopup()"><i class="fas fa-reply fa-2x"></i>
+          </button>
+          <button  class="boton-borrar" (click)="delete(club.id_club)"><a >Borrar club</a>
+          </button>
+      </div>
+      <div
+      class="modal"
+      tabindex="-1"
+      role="dialog"
+      [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          Estas seguro que no deseas actualizar este club?
+        </div>
+        <div class="modal-footer modal-footer-yellow">
+          <button class="btn btn-danger" (click)="closePopup()">Cancelar</button>
+          <button class="btn btn-primary" (click)="goBack()">Regresar</button>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="card-body text-center" >
+      <br><br>
+      <form [formGroup]="datos" >
+        <div class="label-nombre-xs mb-4">
+            <label for="name" class="form-label">Nombre</label>
+            <div class='info'>{{club.name}}</div>
+          </div>
+        <div class="label-nombre-xs mb-4">
+          <label for="name" class="form-label">Dirección</label>
+          <div class='info'>{{club.address}}</div>
+        </div>
+        <div class="label-email-xs mb-4">
+          <label for="tel" class="form-label">Teléfono o número celular</label>
+          <div class='info'>{{club.phone}}</div>
+        </div>
+
+          <div class="label-email-xs mb-4">
+            <label for="email" class="form-label">Estado</label>
+            <input type="email" class="form-control" formControlName="state" id="state" required>
+          </div>
+          <div class="boton-enviar-formulario-xs d-grid">
+            <br>
+            <br>
+          <button type="submit" class="boton-editar" (click)="editar()">Guardar cambios</button>
+        </div>
+      </form>
+      <br><br>
+      </div>
+    </div>
+    </html>

@@ -1,0 +1,81 @@
+
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Bootstrap demo</title>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    </head>
+      <div class="card">
+        <div class="card-header">
+            <div class="titulo">Usuarios</div>
+            <button  class="boton-adicionar"><a href='administrator/register-user'>Crear usuario <i class="fas fa-plus-circle"></i></a>
+            </button>
+        </div>
+        <div class="card-body">
+          <div class="row container-sucursal" >
+            <div class="col">
+              <div class="caja-imagen">
+                <img src="./assets/img/administrador-darmon.png" class='image-logo'>
+            </div>
+           </div>
+
+            <div class="col text-center">Administradores Darmon</div>
+            <div class="col col-6 text-center text-long">
+              <div class='text-long'>Este usuario tiene permisos para modificar todos los usuarios exitentes e ingreso al modulo del administrador de Darmon, este usuario solo puede ser creado por otro administrador Darmon</div>
+            </div>
+            <div class="col text-center"><button class="btn" type="button" [routerLink]="['/administrator/category-users', 1]">
+              <i class="fas fa-arrow-circle-right fa-2x" ></i>
+            </button></div>
+          </div>
+<br>
+          <div class="row container-sucursal" >
+            <div class="col">
+              <div class="caja-imagen">
+                <img src="./assets/img/administrador.png" class='image-logo'>
+            </div>
+           </div>
+            <div class="col text-center">Administradores y entrenadores</div>
+            <div class="col col-6 text-center text-long">
+              <div>Este usuario administrar el club que registre y todos los entrenadores y deportistas que esten vinculados, tendra unicamente acceso al módulo de administración móvil</div>
+            </div>
+            <div class="col text-center"><button class="btn" type="button" [routerLink]="['/administrator/category-users', 2]">
+              <i class="fas fa-arrow-circle-right fa-2x" ></i>
+            </button></div>
+          </div>
+<br>
+          <div class="row container-sucursal" >
+            <div class="col">
+              <div class="caja-imagen">
+                <img src="./assets/img/deportista.png" class='image-logo'>
+            </div>
+           </div>
+            <div class="col text-center">Deportistas</div>
+            <div class="col col-6 text-center text-long">
+              <div>Este usuario solo tiene accesso al modulo sin inicar sesión y en el caso que este registrado en algun club</div>
+            </div>
+            <div class="col text-center"><button class="btn" type="button" [routerLink]="['/administrator/category-users', 3]">
+              <i class="fas fa-arrow-circle-right fa-2x" ></i>
+            </button></div>
+          </div>
+<br>
+<div class="row container-sucursal" >
+  <div class="col">
+    <div class="caja-imagen">
+      <img src="./assets/img/empresa.png" class='image-logo'>
+  </div>
+ </div>
+  <div class="col text-center">Entidades deportivas</div>
+  <div class="col col-6 text-center text-long">
+    <div>Este usuario tiene accesso al modulo de eventos para publicar carreras y demas información con el deporte relacionado</div>
+  </div>
+  <div class="col text-center"><button class="btn" type="button" [routerLink]="['/administrator/category-users', 4]">
+    <i class="fas fa-arrow-circle-right fa-2x" ></i>
+  </button></div>
+</div>
+        </div>
+    </div>
+  </html>
+
