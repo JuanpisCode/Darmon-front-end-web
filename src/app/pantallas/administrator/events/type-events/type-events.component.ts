@@ -16,6 +16,9 @@ export class TypeEventsComponent {
   item:any;
   dataSport:any;
   keyword='name';
+  errors=false;
+  tokenForm!:FormGroup;
+  length=1;
 
   constructor(
     private Httpclient:HttpClient,
@@ -27,9 +30,15 @@ export class TypeEventsComponent {
 
   ngOnInit():void{
 
-    this.sportService.getSportsArray()
+    this.getSports(this.length);
+
+  }
+
+  getSports(length:number){
+    this.sportService.getSportsArray(length)
     .subscribe(resp=>{
       this.dataSport=resp;
+      this.refreshToken();
     })
   }
 
@@ -51,10 +60,32 @@ export class TypeEventsComponent {
       this.Httpclient.post('https://api.darmon.co/auth/get-events-sport',params).subscribe(
         resp=>{
           this.events= resp;
+      this.refreshToken();
         }
       )
     }else{
       alert('Error! no se encuentra seleccionado ningun deporte');
     }
+  }
+
+  refreshToken(){
+
+    let id=this.loginService.getIdUserParam();
+    let tok='ksaisaiuisabt6tqt26632vgdvf632g72h2e8gdtf6defg7e2hfuib2eg73287hf7bg2c7wvg623vg76vdb8y32nf89n98nf276b2'
+
+    this.tokenForm= new FormGroup({
+      id_user:new FormControl(id),
+      token:new FormControl(tok)
+    })
+
+    let param={
+      id_user:this.tokenForm.value.id_user,
+      token:this.tokenForm.value.token,
+    }
+    this.loginService.refreshToken(param)
+    .subscribe(resp=>{
+      this.errors = resp === 400;
+        this.errors= resp===401;
+    })
   }
 }

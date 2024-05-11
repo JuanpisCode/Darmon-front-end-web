@@ -21,18 +21,21 @@
           Darmon
          </div>
          <ul class="list-items">
-            <li><a href='administrator/users'><i class="fas fa-users"></i>Usuarios</a></li>
-            <li><a href='administrator/clubs'><i class="fas fa-sitemap"></i>Clubes</a></li>
-            <li><a href='administrator/entities'><i class="fas fa-user-secret"></i>Entidad Deportiva</a></li>
-            <li><a href='administrator/type-events'><i class="fas fa-flag-checkered"></i>Eventos</a></li>
-            <li><a href='administrator/sports'><i class="fas fa-futbol"></i>Deportes</a></li>
-            <li><a href='administrator/pays'><i class="fas fa-dollar-sign"></i> Pagos</a></li>
-            <li><a href='administrator/chat'><i class="fas fa-comments"></i>Servicio al cliente</a></li>
-            <li><a (click)="salir()"><i class="fas fa-adversal"></i>Cerrar sesión</a></li>
+            <li><button (click)="refreshToken()" [routerLink]="['/administrator/users']"><i class="fas fa-users"></i>Usuarios</button></li>
+            <li><button [routerLink]="['/administrator/clubs']"><i class="fas fa-sitemap"></i>Clubes</button></li>
+            <li><button [routerLink]="['/administrator/entities']"><i class="fas fa-user-secret"></i>Entidad Deportiva</button></li>
+            <li><button [routerLink]="['/administrator/type-events']"><i class="fas fa-flag-checkered"></i>Eventos</button></li>
+            <li><button [routerLink]="['/administrator/sports']"><i class="fas fa-futbol"></i>Deportes</button></li>
+            <li><button [routerLink]="['/administrator/all-plans']"><i class="fas fa-dolly-flatbed"></i>Planes</button></li>
+            <li><button [routerLink]="['/administrator/all-subscription']"><i class="fas fa-subscript"></i>Suscripciones</button></li>
+            <li><button (click)="refreshToken()" [routerLink]="['/administrator/pays']"><i class="fas fa-dollar-sign"></i> Pagos</button></li>
+            <li><button [routerLink]="['/administrator/chat']"><i class="fas fa-comments"></i>Servicio al cliente</button></li>
+            <li><button (click)="salir()"><i class="fas fa-adversal"></i>Cerrar sesión</button></li>
+            <div class="time">{{hr}}:{{min}}:{{sec}}:{{ms}}</div>
             <div class="icons">
-               <a href="#"><i class="fab fa-facebook-f"></i></a>
-               <a href="#"><i class="fab fa-instagram"></i></a>
-               <a href="#"><i class="fab fa-github"></i></a>
+               <button><i class="fab fa-facebook-f"></i></button>
+               <button><i class="fab fa-instagram"></i></button>
+               <button><i class="fab fa-github"></i></button>
             </div>
          </ul>
       </nav>

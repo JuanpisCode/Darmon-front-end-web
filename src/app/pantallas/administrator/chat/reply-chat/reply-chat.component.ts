@@ -28,6 +28,7 @@ export class ReplyChatComponent {
   id_user: number;
   messages:FormGroup;
   hour:number;
+  errors=false;
 
   constructor(
     private _location:Location,
@@ -38,7 +39,6 @@ export class ReplyChatComponent {
     private loginService:LoginService,
     private httpclient:HttpClient,
   ){
-
 
     let d= new Date().getUTCDay();
     let m= new Date().getUTCMonth();

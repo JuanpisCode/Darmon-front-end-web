@@ -55,12 +55,10 @@ export class EditClubsComponent implements OnInit{
     if(this.id_club!=0){
 
       this.cargar(this.id_club)
+      this.obtenerClub(this.id_club)
 
       }
 
-      if(this.id_club!=0){
-        this.obtenerClub(this.id_club)
-      }
   }
 
   cargar( id_club:number):void{

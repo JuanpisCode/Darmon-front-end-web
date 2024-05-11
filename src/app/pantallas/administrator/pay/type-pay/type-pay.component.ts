@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoginService } from 'src/app/services/login.service';
 import { ErrorInterceptor } from 'src/app/helpers/error.interceptor';
 import * as Notiflix from 'notiflix';
+import { Response } from 'src/app/models/payments';
 
 @Component({
   selector: 'app-type-pay',
@@ -26,6 +27,9 @@ export class TypePayComponent{
   keyword='name';
   private year='year';
   private id_club='id_club';
+  errors=false;
+  tokenForm!:FormGroup;
+  length=1;
 
   years=[
     {'name':'2024'},{'name':'2023'},{'name':'2022'},{'name':'2021'},{'name':'2020'},
@@ -59,7 +63,7 @@ export class TypePayComponent{
     if(this.type_pay!=0){
       if(this.type_pay==1){
          this.name='Pagos Darmon';
-         this.getPayments();
+         this.getPayments(this.length);
          this.id_1=true;
          this.id_2=false;
       }
@@ -67,12 +71,22 @@ export class TypePayComponent{
         this.name='Pagos deportivos';
         this.id_1=false;
         this.id_2=true;
-        this.clubService.getClubsArray()
-        .subscribe(resp=>{
-          this.dataClub=resp
-        })
+        this.getClubs(this.length)
       }
     }
+
+  }
+
+  onScrollPayments():void{
+
+    this.getPayments(++this.length);
+  }
+
+  getClubs(length:number){
+    this.clubService.getClubsArray(length).subscribe(resp=>{
+      this.dataClub=resp;
+      this.refreshToken();
+    });
 
   }
 
@@ -90,14 +104,15 @@ export class TypePayComponent{
     this._location.back();
   }
 
-  public async getPayments(){
-    await this.payService.getPayments()
-    .subscribe(resp=>{
-      this.pays=resp;
+  getPayments(length:number){
+    this.payService.getPayments(length)
+    .subscribe((pays:Response[])=>{
+      this.pays=pays;
+      this.refreshToken();
     })
   }
 
-  getPaySportman(){
+  getPaySportman(length:number){
     let idC=localStorage.getItem(this.id_club);
     let Y=localStorage.getItem(this.year);
     let tok= this.loginService.getJwtToken();
@@ -107,12 +122,14 @@ export class TypePayComponent{
       token:tok,
       id_club:idC,
       year:Y,
-      month:this.datos.value.month
+      month:this.datos.value.month,
+      length:length
     }
 
     if(this.datos.valid){
-      this.Httpclient.post('https://api.darmon.co/auth/get-pay-sportman',params).subscribe(resp=>{
+      this.Httpclient.post('https://api.darmon.co/auth/get-pay-sportman',params).subscribe((resp)=>{
         this.pays=resp;
+        this.refreshToken();
       });
 
     }else{
@@ -149,7 +166,7 @@ export class TypePayComponent{
             ErrorInterceptor
                 Notiflix.Notify.success('Listado eliminado');
                 this.closePopup();
-                this.getPaySportman();
+                this.getPaySportman(this.length);
                 localStorage.removeItem(this.id_club);
                 localStorage.removeItem(this.year);
           });
@@ -165,6 +182,27 @@ export class TypePayComponent{
       alert('Error! no has seleccionado ningun mes');
     }
 
+  }
+
+  refreshToken(){
+
+    let id=this.loginService.getIdUserParam();
+    let tok='ksaisaiuisabt6tqt26632vgdvf632g72h2e8gdtf6defg7e2hfuib2eg73287hf7bg2c7wvg623vg76vdb8y32nf89n98nf276b2'
+
+    this.tokenForm= new FormGroup({
+      id_user:new FormControl(id),
+      token:new FormControl(tok)
+    })
+
+    let param={
+      id_user:this.tokenForm.value.id_user,
+      token:this.tokenForm.value.token,
+    }
+    this.loginService.refreshToken(param)
+    .subscribe(resp=>{
+      this.errors = resp === 400;
+        this.errors= resp===401;
+    })
   }
 
 }

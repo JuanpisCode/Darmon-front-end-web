@@ -1,0 +1,69 @@
+.card{
+  width: 99.5%;
+  margin: 0 auto;
+  box-shadow: 0px 5px 10px black;
+  border: #333;
+}
+.card-header{
+  height: 80px;
+  background: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.boton-regresar{
+  border-radius: 10px;
+  background: red;
+  height: 45px;
+  position: absolute;
+  left: 80px;
+}
+.boton-regresar a{
+  color: black;
+  text-decoration: none;
+  font-size: 17px;
+font-weight: 600;
+}
+form{
+  width: 85%;
+  margin: 0 auto;
+}
+.boton-agregar{
+  border-radius: 10px;
+  background: red;
+  height: 50px;
+}
+.boton-agregar:hover{
+  background: #333;
+  color: white;
+}
+.red{
+color: red;
+}
+label{
+color: black;
+}
+.categoria{
+  color: black;
+  background: red;
+  border-radius: 10px;
+  font-weight: 500;
+}
+.div-boton{
+  margin: 0 auto;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.boton-buscar{
+  border-radius: 10px;
+  background: red;
+  height: 50px;
+  width: 100%;
+}
+.boton-buscar:hover{
+  background: #333;
+  color: white;
+  width: 100%;
+}

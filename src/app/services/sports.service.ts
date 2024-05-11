@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from './login.service';
 import { Response, Sport } from '../models/sport';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,36 +17,40 @@ export class SportsService {
     private loginService:LoginService
     ) { }
 
-  getSports(){
+  getSports(length:number): Observable<Response[]>{
     let tok=this.loginService.getJwtToken();
 
     this.datos= new FormGroup({
       token:new FormControl(tok),
+      length:new FormControl(length)
     });
 
     let param={
       token:this.datos.value.token,
-    };
-
-    const url='https://api.darmon.co/auth/get-sports';
-
-    return this.httpClient.post<Sport>(url,param);
-  }
-
-  getSportsArray(){
-    let tok=this.loginService.getJwtToken();
-
-    this.datos= new FormGroup({
-      token:new FormControl(tok),
-    });
-
-    let param={
-      token:this.datos.value.token,
+      length:this.datos.value.length
     };
 
     const url='https://api.darmon.co/auth/get-sports-array';
 
-    return this.httpClient.post<Response>(url,param);
+    return this.httpClient.post<Response[]>(url,param);
+  }
+
+  getSportsArray(length:number):Observable<Response[]>{
+    let tok=this.loginService.getJwtToken();
+
+    this.datos= new FormGroup({
+      token:new FormControl(tok),
+      length:new FormControl(length),
+    });
+
+    let param={
+      token:this.datos.value.token,
+      length:this.datos.value.length,
+    };
+
+    const url='https://api.darmon.co/auth/get-sports-array';
+
+    return this.httpClient.post<Response[]>(url,param);
   }
 
   getSingleSportEdit(id_sport:number){
@@ -71,10 +76,9 @@ export class SportsService {
 
   deleteSport(id_sport:number){
     let tok=this.loginService.getJwtToken();
-    let id=id_sport;
 
     this.datos= new FormGroup({
-      id_sport:new FormControl(id),
+      id_sport:new FormControl(id_sport),
       token:new FormControl(tok)
     });
 

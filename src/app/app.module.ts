@@ -39,6 +39,16 @@ import { BuscadorChatPipe } from './pipe/buscador-chat.pipe';
 import { TypePayComponent } from './pantallas/administrator/pay/type-pay/type-pay.component';
 import { TypeEventsComponent } from './pantallas/administrator/events/type-events/type-events.component';
 import { EditEventsComponent } from './pantallas/administrator/events/edit-events/edit-events.component';
+import { NgxCopyPasteDirective } from 'ngx-copypaste';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { AllPlansComponent } from './pantallas/administrator/plans/all-plans/all-plans.component';
+import { RegisterPlanComponent } from './pantallas/administrator/plans/register-plan/register-plan.component';
+import { EditPlanComponent } from './pantallas/administrator/plans/edit-plan/edit-plan.component';
+import { AllSubscriptionsComponent } from './pantallas/administrator/subscriptions/all-subscriptions/all-subscriptions.component';
+import { EditSubscriptionComponent } from './pantallas/administrator/subscriptions/edit-subscription/edit-subscription.component';
+import { BuscadorPlanPipe } from './pipe/buscador-plan.pipe';
+import { BuscadorSubscriptionPipe } from './pipe/buscador-subscription.pipe';
+import { RegisterSubscriptionComponent } from './pantallas/administrator/subscriptions/register-subscription/register-subscription.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +80,15 @@ import { EditEventsComponent } from './pantallas/administrator/events/edit-event
     BuscadorChatPipe,
     TypePayComponent,
     TypeEventsComponent,
-    EditEventsComponent
+    EditEventsComponent,
+    AllPlansComponent,
+    RegisterPlanComponent,
+    EditPlanComponent,
+    AllSubscriptionsComponent,
+    EditSubscriptionComponent,
+    BuscadorPlanPipe,
+    BuscadorSubscriptionPipe,
+    RegisterSubscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +99,9 @@ import { EditEventsComponent } from './pantallas/administrator/events/edit-event
     CommonModule,
     RouterModule,
     BrowserAnimationsModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    NgxCopyPasteDirective,
+    InfiniteScrollModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true},

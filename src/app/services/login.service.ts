@@ -10,6 +10,7 @@ import jwt_decode from "jwt-decode";
   providedIn: 'root'
 })
 export class LoginService {
+
   tokenForm!:FormGroup;
   error=false;
 
@@ -20,7 +21,7 @@ export class LoginService {
   constructor(private http:HttpClient){}
 
 
-  login(user:{username:string,password:string,id_module:string,id_user:string,token:string}){
+  login(user:{username:string,password:string,id_module:string,token:string}){
 
     const url = 'https://api.darmon.co/auth/login-admin';
 
@@ -34,6 +35,24 @@ export class LoginService {
         mapTo(true),
         catchError(error=>{
           return of (error.status)
+        })
+    )
+  }
+
+  refreshToken(resfresh:{token:string,id_user:string}){
+
+    const url='https://api.darmon.co/auth/refresh-token';
+
+    return this.http.post<any>(url,resfresh).pipe(
+
+      tap(
+        tokens=>{
+          this.doLogin(tokens);
+        }),
+
+        mapTo(true),
+        catchError(error=>{
+          return of(error.status)
         })
     )
   }
@@ -61,12 +80,20 @@ getIdUser(){
   return localStorage.getItem(this.id_user);
 }
 
+getJwtTokenParam(){
+
+  const item= localStorage.getItem(this.token);
+  return item ? JSON.parse(item):[];
+
+}
+
 getIdUserParam(){
 
   const item= localStorage.getItem(this.id_user);
   return item ? JSON.parse(item):[];
 
 }
+
 
 isLoggedToken(){
     return !!this.getJwtToken()&& !this.expTiempoToken();

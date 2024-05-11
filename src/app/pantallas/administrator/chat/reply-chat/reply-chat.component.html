@@ -38,7 +38,9 @@
           [ngClass]="{'sender': chat.isMe != 'false'}"
           >
             <div class="chat-bubble">
-              {{chat.message}}
+              <div ngxCopyPaste #cp="copy">
+                {{chat.message}}
+              </div>
               <button class="chat-button" (click)="openPopup(chat.id_chat, chat.id_user)"><img src="assets/img/menu.png" width="20px">
               </button>
               <div
@@ -50,7 +52,8 @@
               <div class="modal-content">
                 <div class="modal-body">
                   <br>
-                  <button class="btn btn-copiar" >Copiar</button>
+
+                  <button class="btn btn-copiar" (click)="cp.copy()">Copiar</button>
                   <br>
                   <button class="btn btn-eliminar" (click)="delete()">Anular envio</button>
                   <br>
@@ -62,7 +65,7 @@
             </div>
             </div>
               <span class="chat-date">
-                {{chat.day}}/{{chat.month}}/{{chat.year}}-{{chat.hour}}:{{chat.minute}} {{chat.meridiem}}
+                {{chat.day}}/{{chat.month}}/{{chat.year}} {{chat.hour}}:{{chat.minute}} {{chat.meridiem}}
               </span>
             </div>
           </div>

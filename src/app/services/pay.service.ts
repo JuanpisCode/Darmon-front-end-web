@@ -4,6 +4,7 @@ import { LoginService } from './login.service';
 import { HttpClient } from '@angular/common/http';
 import { Response } from '../models/payments';
 import { Resp } from '../models/pay_sportman';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,38 +18,40 @@ export class PayService {
     private loginService:LoginService
   ) { }
 
-  getPayments(){
+  getPayments(length:number):Observable<Response[]>{
     let tok=this.loginService.getJwtToken();
     let id=this.loginService.getIdUser();
     this.datos= new FormGroup({
       token:new FormControl(tok),
-      id_user:new FormControl(id)
+      id_user:new FormControl(id),
+      length:new FormControl(length),
     });
 
     let param={
       token:this.datos.value.token,
-      id_user:this.datos.value.id_user
+      id_user:this.datos.value.id_user,
+      length:this.datos.value.length,
     };
 
     const url='https://api.darmon.co/auth/get-payments';
 
-    return this.httpClient.post<Response>(url, param);
+    return this.httpClient.post<Response[]>(url, param);
   }
 
   getPaySportman(
     id_club: number,
     year: number,
     month: number,
-  ){
+    length:number
+  ):Observable<Resp[]>{
     let tok=this.loginService.getJwtToken();
-    let idC=id_club;
-    let y=year;
-    let m=month;
+
     this.datos= new FormGroup({
       token:new FormControl(tok),
-      id_club:new FormControl(idC),
-      year:new FormControl(y),
-      month:new FormControl(m)
+      id_club:new FormControl(id_club),
+      year:new FormControl(year),
+      month:new FormControl(month),
+      length:new FormControl(length),
     });
 
     let param={
@@ -60,7 +63,7 @@ export class PayService {
 
     const url='https://api.darmon.co/auth/get-pay-sportman';
 
-    return this.httpClient.post<Resp>(url, param);
+    return this.httpClient.post<Resp[]>(url, param);
   }
 
 }

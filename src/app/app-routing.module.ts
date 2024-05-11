@@ -22,6 +22,12 @@ import { AllChatComponent } from './pantallas/administrator/chat/all-chat/all-ch
 import { ReplyChatComponent } from './pantallas/administrator/chat/reply-chat/reply-chat.component';
 import { TypePayComponent } from './pantallas/administrator/pay/type-pay/type-pay.component';
 import { TypeEventsComponent } from './pantallas/administrator/events/type-events/type-events.component';
+import { AllPlansComponent } from './pantallas/administrator/plans/all-plans/all-plans.component';
+import { RegisterPlanComponent } from './pantallas/administrator/plans/register-plan/register-plan.component';
+import { EditPlanComponent } from './pantallas/administrator/plans/edit-plan/edit-plan.component';
+import { AllSubscriptionsComponent } from './pantallas/administrator/subscriptions/all-subscriptions/all-subscriptions.component';
+import { EditSubscriptionComponent } from './pantallas/administrator/subscriptions/edit-subscription/edit-subscription.component';
+import { RegisterSubscriptionComponent } from './pantallas/administrator/subscriptions/register-subscription/register-subscription.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -46,6 +52,12 @@ const routes: Routes = [
     {path:'chat',component:AllChatComponent},
     {path:'reply-chat/:id_user',component:ReplyChatComponent},
     {path:'type-events',component:TypeEventsComponent},
+    {path:'all-plans',component:AllPlansComponent},
+    {path:'register-plan',component:RegisterPlanComponent},
+    {path:'edit-plan/:id_payment_plan',component:EditPlanComponent},
+    {path:'all-subscription',component:AllSubscriptionsComponent},
+    {path:'edit-subscription/:id_user/:id_payment_plan',component:EditSubscriptionComponent},
+    {path:'register-subscription',component:RegisterSubscriptionComponent},
   ]}
 ];
 

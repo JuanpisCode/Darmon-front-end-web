@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
       username:this.loginForm.value.username,
       password:this.loginForm.value.password,
       id_module:this.loginForm.value.id_module,
-      id_user:this.loginForm.value.id_user,
       token:this.loginForm.value.token
     })
     .subscribe(resp=>

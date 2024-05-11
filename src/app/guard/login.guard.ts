@@ -15,9 +15,10 @@ export class LoginGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
       if(this.loginService.isLoggedToken()){
-        this.router.navigate(['/administrator']);
-      }
 
+        this.router.navigate(['/administrator']);
+
+      }
 
         return !this.loginService.isLoggedToken();
   }

@@ -38,6 +38,13 @@
                   </div>
                 </td>
               </tr>
+              <div
+              infiniteScroll
+              [infiniteScrollDistance]="1"
+              [infiniteScrollThrottle]="0"
+              (scrolled)="onScrollPayments()">
+
+             </div>
             </tbody>
           </table>
          </div >
@@ -55,8 +62,8 @@
                 </ng-autocomplete>
                 <ng-template #itemTemplate let-item>
                   <a [innerHTML]="item.name">
-
                   </a>
+
                 </ng-template>
                 <ng-template #notFoundTemplate let-notFound>
                   <a [innerHTML]="notFound"></a>
@@ -99,7 +106,7 @@
             </div>
             <br>
             <div class="div-boton">
-              <button type="btn" class="boton-buscar" (click)="getPaySportman()">Buscar información</button>
+              <button type="btn" class="boton-buscar" (click)="getPaySportman(1)">Buscar información</button>
             </div>
           </form>
 <br>
@@ -137,6 +144,13 @@
 
                   </td>
                 </tr>
+                <div
+                infiniteScroll
+                [infiniteScrollDistance]="1"
+                [infiniteScrollThrottle]="0"
+                (scrolled)="onScrollPayments()">
+
+               </div>
               </tbody>
             </table>
            </div>

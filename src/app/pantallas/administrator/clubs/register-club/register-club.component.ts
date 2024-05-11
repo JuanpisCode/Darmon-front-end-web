@@ -22,6 +22,7 @@ export class RegisterClubComponent {
   private id_sport='id_sport';
   private idUser='idUser';
   id_module:number;
+  length=1;
 
   constructor(
     private Httpclient:HttpClient,
@@ -76,12 +77,22 @@ export class RegisterClubComponent {
   }
 
   ngOnInit(): void {
-    this.sportService.getSportsArray()
+
+    this.getSports(this.length);
+
+    this.getUsers(this.length);
+
+  }
+
+  getSports(length:number){
+    this.sportService.getSportsArray(length)
     .subscribe(resp=>{
       this.dataSport=resp
     });
+  }
 
-    this.userServices.getUsersClub(this.id_module)
+  getUsers(length:number){
+    this.userServices.getUsersClub(this.id_module,length)
     .subscribe(resp=>{
       this.dataUser=resp
     })

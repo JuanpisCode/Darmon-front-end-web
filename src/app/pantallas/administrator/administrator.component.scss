@@ -76,7 +76,6 @@
   list-style: none;
 }
 #sidebar .list-items li{
-  padding-left: 40px;
   line-height: 50px;
   border-top: 1px solid rgba(255,255,255,0.1);
   border-bottom: 1px solid #333;
@@ -90,16 +89,18 @@
 #sidebar .list-items li:first-child{
   border-top: none;
 }
-#sidebar .list-items li a{
+#sidebar .list-items li button{
   color: white;
+  background-color: transparent;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
   height: 100%;
   width: 100%;
   display: block;
+  border: none;
 }
-#sidebar .list-items li a i{
+#sidebar .list-items li button i{
   margin-right: 20px;
 }
 .content{
@@ -135,7 +136,7 @@
   align-items: center;
   justify-content: center;
 }
-#sidebar .list-items .icons a{
+#sidebar .list-items .icons button{
   height: 100%;
   width: 40px;
   display: block;
@@ -144,13 +145,15 @@
   color: white;
   background: #4a4a4a;
   border-radius: 5px;
+  border: none;
   border: 1px solid #383838;
   transition: all 0.3s ease;
 }
-#sidebar .list-items .icons a:hover{
+#sidebar .list-items .icons button:hover{
   background: #404040;
+
 }
-.list-items .icons a:first-child{
+.list-items .icons button:first-child{
   margin-left: 0px;
 }
 .content{

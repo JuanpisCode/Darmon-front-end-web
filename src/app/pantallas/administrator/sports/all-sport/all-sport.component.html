@@ -42,6 +42,14 @@
                   </div>
                 </td>
               </tr>
+              <div
+              infiniteScroll
+              [infiniteScrollDistance]="1"
+              [infiniteScrollThrottle]="0"
+              (scrolled)="onScroll()">
+
+             </div>
+
             </tbody>
           </table>
          </div>

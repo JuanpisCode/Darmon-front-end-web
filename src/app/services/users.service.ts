@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from './login.service';
 import { Response, Users } from '../models/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,58 +19,62 @@ export class UsersService {
 
    }
 
-   getUsersModule(id_module:number){
+   getUsersModule(id_module:number,length:number):Observable<Response[]>{
     let tok=this.loginService.getJwtToken();
-    let idM= id_module;
 
     this.datos= new FormGroup({
       token:new FormControl(tok),
-      id_module:new FormControl(idM),
+      id_module:new FormControl(id_module),
+      length:new FormControl(length),
     });
 
     let param={
       token:this.datos.value.token,
       id_module:this.datos.value.id_module,
+      length:this.datos.value.length,
     };
 
     const url='https://api.darmon.co/auth/get-users';
 
-    return this.httpClient.post<Users>(url,param);
+    return this.httpClient.post<Response[]>(url,param);
   }
 
-   getUsers(){
+   getUsers(length:number):Observable<Response[]>{
     let tok=this.loginService.getJwtToken();
 
     this.datos= new FormGroup({
       token:new FormControl(tok),
+      length:new FormControl(length),
     });
 
     let param={
       token:this.datos.value.token,
+      length:this.datos.value.length,
     };
 
     const url='https://api.darmon.co/auth/get-users-all';
 
-    return this.httpClient.post<Users>(url,param);
+    return this.httpClient.post<Response[]>(url,param);
   }
 
-  getUsersClub(id_module:number){
+  getUsersClub(id_module:number,length:number):Observable<Response[]>{
     let tok=this.loginService.getJwtToken();
-    let idM= id_module;
 
     this.datos= new FormGroup({
       token:new FormControl(tok),
-      id_module:new FormControl(idM),
+      id_module:new FormControl(id_module),
+      length:new FormControl(length),
     });
 
     let param={
       token:this.datos.value.token,
       id_module:this.datos.value.id_module,
+      length:this.datos.value.length,
     };
 
     const url='https://api.darmon.co/auth/get-users-club';
 
-    return this.httpClient.post<Response>(url,param);
+    return this.httpClient.post<Response[]>(url,param);
   }
 
   getSingleUserEdit(id_user:number){

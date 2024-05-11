@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EntitiesService } from 'src/app/services/entities.service';
 import { LoginService } from 'src/app/services/login.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Location } from '@angular/common';
@@ -22,12 +21,12 @@ export class RegisterEntitiesComponent {
   private idUser='idUser';
   id_module:number;
   private emailPattern:any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  length=1;
 
   constructor(
     private Httpclient:HttpClient,
     private loginService:LoginService,
     private _location:Location,
-    private entitieService:EntitiesService,
     private userServices:UsersService
     ) {
 
@@ -73,12 +72,13 @@ export class RegisterEntitiesComponent {
   }
 
   ngOnInit(): void {
-    this.entitieService.getEntities()
-    .subscribe(resp=>{
-      this.dataSport=resp
-    });
 
-    this.userServices.getUsersClub(this.id_module)
+    this.getUsers(this.length);
+
+  }
+
+  getUsers(length:number){
+    this.userServices.getUsersClub(this.id_module,length)
     .subscribe(resp=>{
       this.dataUser=resp
     })

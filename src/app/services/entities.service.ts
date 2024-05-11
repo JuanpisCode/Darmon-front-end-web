@@ -3,6 +3,7 @@ import { LoginService } from './login.service';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Entitie, Response } from '../models/entitie';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,20 +19,22 @@ export class EntitiesService {
 
    }
 
-   getEntities(){
+   getEntities(length:number):Observable<Response[]>{
     let tok=this.loginService.getJwtToken();
 
     this.datos= new FormGroup({
       token:new FormControl(tok),
+      length:new FormControl(length),
     });
 
     let param={
       token:this.datos.value.token,
+      length:this.datos.value.length,
     };
 
     const url='https://api.darmon.co/auth/get-entities';
 
-    return this.httpClient.post<Entitie>(url,param);
+    return this.httpClient.post<Response[]>(url,param);
 
    }
 
