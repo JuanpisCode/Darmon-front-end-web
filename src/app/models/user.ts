@@ -10,7 +10,9 @@ export interface Response {
   username?: string;
   email: string;
   phone: string;
-  state: State | null;
+  status: State | null;
+  created_at: string;
+  update_at: string;
   [key:string]:any;
 }
 

@@ -29,7 +29,9 @@
                 <th>Nombre</th>
                 <th class='list-phone'>Contacto</th>
                 <th class='list-email'>Correo</th>
-                <th class='list-image'>Imagen</th>
+                <th class='list-email'>Fecha creado</th>
+                <th class='list-email'>Fecha actualizado</th>
+      <!--          <th class='list-image'>Imagen</th>-->
                 <th></th>
               </tr>
             </thead>
@@ -38,13 +40,15 @@
                 <td><div class="nombres">{{user.name}}</div></td>
                 <td class='list-phone'><div class="nombres">{{user.phone}}</div></td>
                 <td class='list-email'><div class="nombres">{{user.email}}</div></td>
-                <td class='list-image'>
+                <td class='list-email'><div class="nombres">{{user.created_at}}</div></td>
+                <td class='list-email'><div class="nombres">{{user.update_at ?? "no a sido actulizado aun"}}</div></td>
+ <!--               <td class='list-image'>
                   <button class="btn" type="button">
                     <div class="caja-imagen">
                     <img src="assets/img/imagen-logo.png" width="50px" class="image-logo">
                   </div>
                   </button>
-                </td>
+                </td>-->
                 <td class="text-center">
                   <div class="nombres">
                     <button class="btn" type="button" [routerLink]="['/administrator/edit-user', user.id_user]"><img src="assets/img/editar.png" width="25px"></button>
