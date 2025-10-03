@@ -36,21 +36,13 @@
       <form [formGroup]="datos" >
         <div class="label-nombre-xs mb-4">
             <label for="name" class="form-label">Nombre</label>
-            <div class='info'>{{user.name}}</div>
+            <input type="email" class="form-control" formControlName="name" id="name" required>
           </div>
         <div class="label-nombre-xs mb-4">
           <label for="name" class="form-label">Correo</label>
-          <div class='info'>{{user.username}}</div>
-        </div>
-        <div class="label-email-xs mb-4">
-          <label for="tel" class="form-label">Teléfono o número celular</label>
-          <div class='info'>{{user.phone}}</div>
+           <input type="email" class="form-control" formControlName="email" id="email" required>
         </div>
 
-          <div class="label-email-xs mb-4">
-            <label for="email" class="form-label">Estado</label>
-            <input type="email" class="form-control" formControlName="state" id="state" required>
-          </div>
           <div class="boton-enviar-formulario-xs d-grid">
             <br>
             <br>

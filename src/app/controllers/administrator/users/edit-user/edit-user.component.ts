@@ -35,7 +35,8 @@ export class EditUserComponent {
     this.datos= this.fb.group({
       token:new FormControl(tok),
       id_user:new FormControl(this.id_user),
-      state:new FormControl(Validators.required)
+      name:new FormControl(Validators.required),
+      email:new FormControl(Validators.required)
     });
 
   }
@@ -65,7 +66,8 @@ export class EditUserComponent {
 
     this.userService.getSingleUserEdit(id_user).subscribe(data=>{
     this.datos.patchValue({
-      state:   data.state,
+      name:   data.name,
+      email: data.email
     })
     })
     }
@@ -79,7 +81,8 @@ export class EditUserComponent {
       let params={
         id_user:this.datos.value.id_user,
         token:this.datos.value.token,
-        state:this.datos.value.state
+        name:this.datos.value.name,
+        email:this.datos.value.email
       }
 
       if(this.datos.valid){
